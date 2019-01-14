@@ -1,0 +1,34 @@
+Statistical data cleaning using R
+
+Proposal for a 3 hour workshop on statistical data cleaning.
+
+Mark van der Loo and Edwin de Jonge, Statistics Netherlands
+
+
+Abstract.
+
+To trust the outcome of a statistical analyses, one must be able to trust the
+input data. 
+
+In this workshop we demonstrate how data quality can be systematically defined
+and improved using R. The workshop focuses on data validation (data checking),
+locating errors, and imputing missing or erroneous values under restrictions.
+We present short introductions to the main principles, provide quizzes and
+discussions for the audience, and give short R-based exercises. We will
+demonstrate a number of our R packages including 'validate' (for data quality
+checks) 'errorlocate' (for error localizationi), 'simputation' for imputaton
+methods and 'lumberjack' (for keeping track of changes in data).  Special
+attention will be payed on how to combine the various data processing steps,
+and how to analyze and visualize the results.
+
+This tutorial is based on the book 'Statistical Data Cleaning with Applications
+in R' (Wiley & Sons, 2018) by the authors of this tutorial.
+
+
+
+
+
+
+
+
+
