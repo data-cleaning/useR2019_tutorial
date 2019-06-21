@@ -21,3 +21,12 @@ Or download:
 \end{picture}
 
 
+## Data Cleaning and the Statistical Value Chain
+
+\begin{center}
+\includegraphics[]{fig/valuechain.pdf}
+\end{center}
+
+
+
+
