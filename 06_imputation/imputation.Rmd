@@ -9,7 +9,14 @@ output:
 classoption: "aspectratio=169"
 ---
 
-## Imputation
+## Imputing data with simputation
+
+
+```{r, eval=FALSE}
+impute_<model>(data
+  , imputed_variables ~ predictors
+  , add_residual = "none")
+```
 
 
 
