@@ -12,8 +12,8 @@ classoption: "aspectratio=169"
 ## Exact Matching with `match`
 
 ```{r}
-lookup <- c("Alice","Bob","Carol","Dan")
-raw    <- c("Bob","Carl","Rob","bob","Danny","Alice")
+lookup <- c("Alice","Bob","Carol","Danny")
+raw    <- c("Bob","Carl","Rob","bob","Dan","Alice")
 i <- match(raw, lookup)
 data.frame(raw=raw, matched=lookup[i])
 ```
@@ -59,6 +59,10 @@ amatch(raw, lookup, method="cosine", maxDist=0.5, q=3)
 \hline
 \end{tabular}
 \end{center}
+
+$$
+\;
+$$
 
 ### Notes
 

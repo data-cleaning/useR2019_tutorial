@@ -1,17 +1,7 @@
-%% EMOS rmarkdown/beamer header
-%% Mark van der Loo (2016)
-%\usepackage{fontspec}
-%\setmainfont{Carlito}
+%% rmarkdown/beamer header
+%% Mark van der Loo (2019)
 
 \setbeamercolor{background canvas}{bg=}%transparent canvas
-
-%\usepackage{draftwatermark}
-%\SetWatermarkText{Copyright CBS}
-%\SetWatermarkScale{0.4}
-%\SetWatermarkAngle{30}
-%\SetWatermarkColor[gray]{0.9}
-
-
 \usepackage{tikz}
 
 \usetikzlibrary{arrows, positioning, decorations.pathreplacing} 
@@ -120,10 +110,15 @@
   \end{tikzpicture}
 }
 
-% set up EMOS logo for title page, only on title page.
+% set up logo for title page, only on title page.
 \institute{
 \textcolor{cbsgreyblue}{Statistics Netherlands Research \& Development\\ 
 \texttt{@markvdloo} \texttt{@edwindjonge}}
+
+\begin{picture}(0,0)
+\put(-220,-20){\includegraphics[height=40mm]{../00tex/sdcr.jpg}}
+\put(-236.5,126){\includegraphics[width=450pt]{../00tex/banner.png}}
+\end{picture}
 }
 
 \setbeamertemplate{footline}{\hfill \texttt{@markvdloo @edwindjonge \#datacleaning\phantom{fillup}}}
