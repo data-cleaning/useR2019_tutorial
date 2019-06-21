@@ -1,0 +1,22 @@
+---
+title: "Imputation"
+author: "Mark van der Loo and Edwin de Jonge"
+date: "useR!2019"
+output: 
+  beamer_presentation:
+    include:
+      in_header: ../00tex/presheader.tex
+classoption: "aspectratio=169"
+---
+
+## Imputing data with simputation
+
+
+```{r, eval=FALSE}
+impute_<model>(data
+  , imputed_variables ~ predictors
+  , add_residual = "none")
+```
+
+
+
