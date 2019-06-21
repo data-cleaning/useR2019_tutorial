@@ -1,0 +1,23 @@
+---
+title: "Statistical Data Cleaning"
+author: "Mark van der Loo and Edwin de Jonge"
+date: "useR!2019"
+output: 
+  beamer_presentation:
+    include:
+      in_header: ../00tex/presheader.tex
+classoption: "aspectratio=169"
+---
+
+## Materials: `github.com/data-cleaning/useR2019_tutorial`
+
+Clone:
+```{bash, eval=FALSE}
+git clone https://github.com/data-cleaning/useR2019_tutorial
+```
+Or download:
+\begin{picture}(0,0)
+\put(200,-75){\includegraphics[height=35mm]{fig/github.png}}
+\end{picture}
+
+
