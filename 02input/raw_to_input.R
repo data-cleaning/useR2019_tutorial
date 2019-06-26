@@ -8,28 +8,40 @@
 
 
 ## Approximate matching ----
-# Task : join the data against a backbone register with accurate company names.
+# Task: merge our 'companies' data with data from the backbone.
 
-# Try the following code
+# Assignment 1. (see slide)
+
+
+
+# Assignment 2. (from slide).
+
+# first read in the data
 # TODO this data should come from Edwin's part.
 companies <- read.csv("data/companies.csv",stringsAsFactors = FALSE) 
 backbone  <- read.csv("data/backbone.csv", stringsAsFactors = FALSE)
 
 # Merge backbone register information with dirty data (left join)
-test <- merge(companies, backbone, by = "company", all.x = TRUE)
+test <- merge(backbone, companies, by.x = "company", by.y="name"
+              , all.y = TRUE)
 View(test)
+# Q: how many records (out of 60) could be matched?
 
 
 # The equivalent using base R's `match` function works as follows.
-i <- match(companies$company, backbone$company)
-test <- cbind(companies, backbone[i,,drop=FALSE])
+# (advantages: now we keep both 'name' and 'company' columns, and we can 
+# extend to )
+i <- match(companies$name, backbone$company)
+test <- cbind(backbone[i,,drop=FALSE], companies)
+View(test)
 
 
-## ASSIGNMENT. Use approximate text matching to improve the result.
-# note: to experiment with different string distances, first
-# make a data frame with the original data and various matches
-# (as shown in the presentation). Next, choose your best result
-# and store write to file '02Input/input.csv'
+# Code from 2nd assignment here (see slide)
+
+
+# at the end write your result to '02input/input.csv'
+write.csv(input, "02input/input.csv", row.names=FALSE)
+
 
 
 

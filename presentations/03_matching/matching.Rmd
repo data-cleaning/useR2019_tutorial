@@ -9,6 +9,34 @@ output:
 classoption: "aspectratio=169"
 ---
 
+## String distance
+
+### Measure how different two strings are
+
+- (Damerau-) Levenshtein, optimal string alignment: nr of typos
+- $q$-gram based (e.g. cosine distance): co-occurrence of character $q$-plets.
+- Jaro-Winkler typo's/heuristic
+- Soundex: do they sound the same when pronounced?
+
+### The stringdist package
+
+```{r}
+library(stringdist)
+stringdist("mark", "edwin")
+```
+
+## Mini-assignment
+
+Compute a few string distances between you and your neighbour.
+
+```{r,eval=FALSE}
+# for example
+stringdist("mark", "edwin", method="osa")
+```
+
+Method is `"osa"`, `"dl"`, `"lv"`, `"qgram"`, `"jw"`, see also `?stringdist`.
+
+
 ## Exact Matching with `match`
 
 ```{r}
@@ -69,5 +97,19 @@ $$
 - Jaro-Winkler (\texttt{"jw"}) faster then Optimal String Alignment (\texttt{"osa"})
 - For cosine distance (\texttt{"cosine"}) also use `q=3`.
 - Cosine distance also suited for (very) long strings.
+
+
+## Assignment
+
+Enrich data from the `companies` dataset with data from `backbone.csv`.
+
+- Using approximate matching on the `"name"` and `"company"` column.
+- Think about and try different distance functions and `maxDist`
+- Keep your best solution
+- Remove rows that cannot be matched
+- Write to `02input/input.csv`
+
+
+
 
 

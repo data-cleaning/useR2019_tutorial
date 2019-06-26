@@ -11,5 +11,95 @@ classoption: "aspectratio=169"
 
 ## Data validation
 
+Verify that data satisfy technical restrictions and does not contradict
+expert knowledge.
+
+
+### Examples of technical demands
+
+- Number of records must equal 60
+- Financial variables are numeric
+- Records have a unique `id`
+- Zipcode consists of 4 numbers followed by 2 letters 
+
+### Examples of domain knowledge demands
+
+- turnover is nonnegative
+- turnover $-$ costs $=$ profit
+- profit not larger then 60\% of turnover
+- average profit is larger than 0
+- average profit differs less than 10% from last year's average
+
+## Data validation rules
+
+A domain specific language to express demands.
+
+### Why?
+
+- Communicate data quality without ambiguities
+- Make knowledge explicit and organize it
+- Create custom data quality reports
+- Reuse ruleset for data cleaning purposes
+
+### How?
+
+```{r, eval=FALSE}
+library(validate)
+companies <- read.csv("02input/input.csv",stringsAsFactors = FALSE)
+rules     <- validator(mean(profit) > 0, turnover >= 0)
+result    <- confront(companies, rules)
+```
+
+
+
+## Data validation: informal definitions
+
+### Data validation
+
+Check if a value, or combination of values is in a certain set
+of valid values or valid value combinations.
+
+### Data validation language in `validate`
+
+Any R expression that results in a `logical`.
+
+
+# Try the code
+
+
+
+## Core concepts of the `validate` package
+
+
+\begin{center}
+\includegraphics[height=90mm]{fig/diagram.png}
+\end{center}
+
+## Overview of the work flow
+
+\begin{center}
+\includegraphics[height=50mm]{fig/overview.pdf}
+\end{center}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
