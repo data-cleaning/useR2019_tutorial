@@ -54,26 +54,9 @@ A domain specific language to express demands.
 ```{r, eval=FALSE}
 library(validate)
 companies <- read.csv("02input/input.csv",stringsAsFactors = FALSE)
-rules     <- validator(mean(profit) > 0, turnover >= 0)
+rules     <- validator(.file="02input/rules.R")
 result    <- confront(companies, rules)
 ```
-
-
-
-## Data validation: informal definitions
-
-### Data validation
-
-Check if a value, or combination of values is in a certain set
-of valid values or valid value combinations.
-
-### Data validation language in `validate`
-
-Any R expression that results in a `logical`.
-
-
-
-
 
 ## Core concepts of the `validate` package
 
@@ -89,10 +72,47 @@ Any R expression that results in a `logical`.
 \end{center}
 
 
+## Data validation: informal definitions
+
+### Data validation
+
+Check if a value, or combination of values is in a certain set
+of valid values or valid value combinations.
+
+### Data validation language in `validate`
+
+Any R expression that results in a `logical`.
+
+## Expressions that are validation rules
+
+### Basic syntax
+
+- Any type check: `is.numeric`, `is.character`,$\ldots$
+- Any comparison: `<, <=, ==, identical !=, %in%, >=, >`
+- Logical operators `|, &, if, !, all, any`
+- Pattern match: `grepl`
 
 
+### Sugar
+
+Dot "`.`" stands for the whole data set:
+```{r, eval=FALSE}
+nrow(.) >= 50       # at least 40 rows
+"id" %in% names(.)  # 'id' must be present
+```
+
+More, see `?syntax` or `vignette("introduction", package="validate")`
 
 
+## Challenges
+
+1. Express the following restrictions on `companies`. Then, `confront`, and `summarize`
+    - Profit does not exceed 60% of turnover
+    - turnover less costs equals profit
+    - Average profit is larger than zero
+    - correlation (`corr`) between total cost and staff exceeds 0.5
+    - zipcode is 4 numbers followed by two upper case letters (you need to know regex)
+2. Copy those rules in a separate file `myrules.R`. Read into a `validator`.
 
 
 

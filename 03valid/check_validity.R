@@ -33,11 +33,11 @@ summary(result)
 plot(result)
 # Explain what you see
 
-# add the rule 'mean turnover >= 1'
-rules <- rules + validator(V6 = mean(turnover) > 0)
+# add a new rule
+rules <- rules + validator(V6 = total.costs>=0)
 rules
 
-# Study the variables staff ... vat. Add *at least* three more rules, then:
+# Study the variables staff ... vat. Add at least three more rules, then:
 ## 1. Summarize and plot the results. Interpret the results.
 
 ## 2. Use `as.data.frame` to turn read results into a data frame and
