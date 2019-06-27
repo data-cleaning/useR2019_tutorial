@@ -14,7 +14,7 @@
 
 
 
-# Assignment 2. (from slide).
+# Assignment 2. (see slide).
 
 # first read in the data
 # TODO this data should come from Edwin's part.

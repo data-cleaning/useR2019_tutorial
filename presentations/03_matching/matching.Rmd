@@ -34,7 +34,8 @@ Compute a few string distances between you and your neighbour.
 stringdist("mark", "edwin", method="osa")
 ```
 
-Method is `"osa"`, `"dl"`, `"lv"`, `"qgram"`, `"jw"`, see also `?stringdist`.
+- Method is `"osa"`, `"dl"`, `"lv"`, `"qgram"`, `"jw"` 
+- See also `?stringdist` and ``?`stringdist-metrics` ``
 
 
 ## Exact Matching with `match`
