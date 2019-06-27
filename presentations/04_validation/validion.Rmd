@@ -112,7 +112,7 @@ More, see `?syntax` or `vignette("introduction", package="validate")`
     - Average profit is larger than zero
     - correlation (`corr`) between total cost and staff exceeds 0.5
     - zipcode is 4 numbers followed by two upper case letters (you need to know regex)
-2. Copy those rules in a separate file `myrules.R`. Read into a `validator`.
+2. Read the rules in `rules.R`. Then, `confront`, and `summarize`. 
 
 
 

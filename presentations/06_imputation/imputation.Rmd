@@ -9,14 +9,136 @@ output:
 classoption: "aspectratio=169"
 ---
 
+## Try the code
+
+\centering\huge
+
+`03valid/impute.R`
+
+## Imputing data
+
+### Need to specify
+
+- Imputation method
+- Variable(s) to impute
+- Variables used as predictor
+
+### Simputation's goal
+
+Easy to experiment, robust enough for production.
+
+### Simputation interface
+
+```{r, eval=FALSE}
+impute_<model>(data, imputed_variables ~ predictors, ...)
+```
+
+
 ## Imputing data with simputation
 
 
-```{r, eval=FALSE}
-impute_<model>(data
-  , imputed_variables ~ predictors
-  , add_residual = "none")
+
+|  `<model>  `      |  description                                    |
+|-------------------|-------------------------------------------------|
+| `proxy`           | copy (transformation of) other variable(s)      |
+| `median`          | (group-wise) median                             |
+| `rlm`, `lm`, `en` | (robust) linear model, elasticnet regression    |
+| `cart`, `rf`      | Classification And Regression Tree, RandomForest|
+| `em`, `mf`        | EM-alogithm (multivariate normal) `missForest`  |
+| `knn`             | $k$ nearest neighbours                          |
+| `shd`, `rhd`      | sequential, random, hot-deck                    |
+| `pmm`             | predictive mean matching                        |
+| `impute_model`    | use pre-trained model                           |
+
+
+
+## Imputation of the mean
+
+```{r,echo=FALSE, fig.height=5.5}
+library(magrittr)
+library(simputation)
+par(mfrow=c(1,2))
+X <- rnorm(1000)
+Y <- X + rnorm(1000,sd = 0.2)
+i <- sample(1:1000,100,replace=FALSE)
+Y[i] <- NA
+plot(X,Y,pch=".",main="10% missing in Y", las=1)
+d <- data.frame(X=X,Y=Y)
+library(simputation)
+d1 <- impute_lm(d,Y ~ X)
+cols <- rep("black",1000)
+cols[i] <- "red"
+cex <- rep(1,1000)
+cex[i] <- 4
+plot(Y ~ X, data=d1, col=cols,pch=".",cex=cex,las=1,main="Imputation with model Y = a + bX")
 ```
+
+
+## Adding a random residual
+
+```{r, echo=FALSE, fig.height=5.5}
+data("retailers", package="validate")
+library(magrittr)
+library(simputation)
+ret <- retailers[3:10]
+par(mfrow=c(1,2))
+cols <- rep("black",1000)
+cols[i] <- "red"
+cex <- rep(1,1000)
+cex[i] <- 3
+plot(Y ~ X, data=d1, col=cols,pch=".",cex=cex,las=1,main="Imputation with model Y = a + bX")
+
+d2 <- impute_lm(d,Y ~ X,add_residual = "normal")
+plot(Y ~ X, data=d2, col=cols,pch=".",cex=cex,las=1,main="Imputation with Y = a + bX + e")
+```
+
+
+
+
+## Adding a random residual with `simputation`
+
+### Example
+
+```{r, echo=FALSE, results='hide'}
+companies <- read.csv("../../02input/errors_located.csv"
+                      , stringsAsFactors=FALSE)
+```
+
+```{r, results='hide'}
+impute_rlm(companies, other.rev ~ turnover
+         , add_residual = "normal") 
+```
+
+### Options
+
+-  "none"`: (default)
+-  "normal"`: from $N(0,\hat{\sigma})$ 
+-  "observed"`: from observed residuals
+
+## Chaining methods
+
+### Example
+
+```{r, results='hide'}
+companies %>%
+  impute_lm(turnover ~ staff + profit) %>%
+  impute_lm(turnover ~ staff)
+```
+
+## Assignment
+
+1. Read `errors_located.csv` (`stringsAsFactors=FALSE`)
+2. Make a separete data frame, selecting columns 11--14 (`staff`--`vat`)
+3. Implement the following imputation sequence:
+    - Impute `turnover` by copying the `vat` variable (`impute_proxy`)
+    - Impute `staff` with a robust linear model based on `staff.costs`
+    - Impute `staff` with a robust linear model based on `total.costs`
+    - Impute `profit` as `total.rev - total.costs` (`impute_proxy`)
+    - Impute everything else using `missForest` (formula: `. ~ .`)
+
+
+
+
 
 
 
