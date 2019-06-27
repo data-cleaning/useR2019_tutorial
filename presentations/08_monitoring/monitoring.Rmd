@@ -9,7 +9,37 @@ output:
 classoption: "aspectratio=169"
 ---
 
-## Monitoring changes in data
+## Try the code
+
+\centering\huge
+
+`03input/monitoring.R`
+
+## How to monitor changes
+
+### It depends $\ldots$
+
+- Cell-by-cell changes?
+- Count changes?
+- Count changes in satisfying rules?
+- Measure changes in aggregates?
+
+## Decomposing the number of changes in cells
+
+\centering
+\includegraphics[height=5cm]{fig/cellsplit.pdf}
+
+```{r, eval=FALSE}
+validate::cells(start=dataset1, step1=dataset2, step3=dataset3, ...)
+```
 
 
+## Decomposing the number of changes in validation results
+
+\centering
+\includegraphics[height=5cm]{fig/rulesplit.pdf}
+
+```{r, eval=FALSE}
+validate::compare(rules, start=dataset1, step1=dataset2, ...)
+```
 

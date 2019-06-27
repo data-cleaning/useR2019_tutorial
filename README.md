@@ -26,5 +26,18 @@ Slot 2 16:00-17:30
 | Wrap-up              | Mark & Edwin   | 5      |
 
 
+### Install the following packages
+
+```r
+install.packages(c(
+        "validate"
+      , "errorlocate"
+      , "simputation"
+      , "rspa"
+      , "daff"
+      , "lumberjack")
+  , dependencies=TRUE)
+```
+
 
 
