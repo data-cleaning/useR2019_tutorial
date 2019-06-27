@@ -9,6 +9,14 @@ output:
 classoption: "aspectratio=169"
 ---
 
+
+## Try the code
+
+\centering\huge
+
+`03valid/make_valid.R`
+
+
 ## Data validation
 
 Verify that data satisfy technical restrictions and does not contradict
@@ -64,7 +72,6 @@ of valid values or valid value combinations.
 Any R expression that results in a `logical`.
 
 
-# Try the code
 
 
 
