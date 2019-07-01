@@ -1,0 +1,124 @@
+%% rmarkdown/beamer header
+%% Mark van der Loo (2019)
+
+\setbeamercolor{background canvas}{bg=}%transparent canvas
+\usepackage{tikz}
+
+\usetikzlibrary{arrows, positioning, decorations.pathreplacing} 
+\usepackage{pgfplots}
+\usepackage{color}
+
+\definecolor{cbsdarkblue}{HTML}{0581a2}
+\definecolor{cbsliteblue}{HTML}{00a1cd}
+\definecolor{cbsgreyblue}{HTML}{163a72}
+\definecolor{cbsgrey}{HTML}{ececec}
+
+
+% packages needed to represent encoding error symbol
+\usepackage{relsize}
+\usepackage{xspace}
+
+% symbol for encoding error (black diamond with question mark).
+\newlength{\encerr}
+\newcommand{\encodingerror}{%
+  \hbox{%
+    $\blacklozenge$%
+    \settowidth{\encerr}{$\blacklozenge$}%
+    \hspace{-0.77\encerr}%
+    {\color{white}\textsmaller[2]{?}}%
+   }%
+  \xspace{}
+ }
+
+
+% Center title since we'll have logos on both sides
+\setbeamertemplate{frametitle}[default][left]
+
+% Lower frame titles a bit to center between logos
+\addtobeamertemplate{frametitle}{\vskip0.5ex}{}
+
+% presentation title attributes
+\setbeamercolor{title}{fg=cbsgreyblue}
+\setbeamerfont{title}{series=\bfseries}
+
+
+% frame title attributes
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamercolor{frametitle}{fg=cbsliteblue}
+
+% part title attributes
+\setbeamercolor{part title}{fg=cbsliteblue}
+\setbeamerfont{part title}{series=\bfseries}
+
+% section title attributes
+\setbeamercolor{section title}{fg=cbsliteblue}
+\setbeamerfont{section title}{series=\bfseries}
+
+% chapter title attributes
+\setbeamercolor{chapter title}{fg=cbsliteblue}
+\setbeamerfont{chapter title}{series=\bfseries}
+
+
+% set colors
+\setbeamertemplate{itemize item}{\color{cbsgreyblue}{\raisebox{-.7ex}{\Huge$\cdot$}\!}}
+\setbeamertemplate{itemize subitem}{\color{cbsgreyblue}$-$}
+\setbeamercolor*{enumerate item}{fg=cbsgreyblue}
+\setbeamercolor*{enumerate subitem}{fg=cbsgreyblue}
+\setbeamercolor*{enumerate subsubitem}{fg=cbsgreyblue}
+\setbeamercolor{author}{fg=cbsgreyblue}
+\setbeamercolor{normal text}{fg=cbsgreyblue}
+
+\setbeamercolor{block title}{fg=cbsgreyblue}
+\setbeamerfont{block title}{series=\bfseries}
+
+
+% remove the space-eating navigation symbols
+\beamertemplatenavigationsymbolsempty
+
+% we need TIKZ to position the logos.
+\usepackage{tikz}
+
+% convenience function to define rgb colors in tikz
+\tikzset{xcolor/.code args={#1=#2}{
+     \definecolor{mytemp}{rgb}{#2}
+     \tikzset{#1=mytemp}
+  }
+}
+
+
+% set up logos and colored bar for each page
+\logo{
+  % vertical bar in CBS house style color
+  \begin{tikzpicture}[remember picture,overlay]
+    \path[fill=cbsliteblue]
+      (current page.south east)
+      +(-5mm,0pt) rectangle +(5mm,12cm); 
+  \end{tikzpicture}
+
+  % CBS logo (bottom right)
+  \begin{tikzpicture}[remember picture, overlay]
+    \node[xshift=148mm,yshift=15mm] at (current page.south west) {
+        \includegraphics[width=7mm]{../00tex/cbs.png}
+    };
+  \end{tikzpicture}
+
+  % Complutense logo (bottom left)
+  \begin{tikzpicture}[remember picture, overlay]
+    \node[xshift=5mm,yshift=5mm] at (current page.south west) {
+        \includegraphics[height=10mm]{../00tex/useR2019.jpg}
+    };
+  \end{tikzpicture}
+}
+
+% set up logo for title page, only on title page.
+\institute{
+\textcolor{cbsgreyblue}{Statistics Netherlands Research \& Development\\ 
+\texttt{@markvdloo} \texttt{@edwindjonge}}
+
+\begin{picture}(0,0)
+\put(-220,-20){\includegraphics[height=40mm]{../00tex/sdcr.jpg}}
+\put(-236.5,138){\includegraphics[width=450pt]{../00tex/banner.png}}
+\end{picture}
+}
+
+\setbeamertemplate{footline}{\hfill \texttt{@markvdloo @edwindjonge \#datacleaning\phantom{fillup}}}
