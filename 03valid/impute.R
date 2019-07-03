@@ -3,7 +3,6 @@
 
 # try the following code
 library(simputation)
-library(magrittr)
 companies <- read.csv("03valid/errors_located.csv",stringsAsFactors = FALSE)
 
 # for convenience, we take only the financial variables
@@ -28,7 +27,7 @@ plot(imputed$turnover, imputed$other.rev, col='blue', pch=16)
 points(finvar$turnover, finvar$other.rev, col='black',pch=16)
 
 # 2. Now use a robust linear model (M-estimator) to impute
-#    'staff.costs' as a function of 'staff'. Use 'impute_rlm'
+#    'staff.costs' with 'staff' as predictor. Use 'impute_rlm'
 #    and make the same plot (but for staff and staff costs).
 
 

@@ -14,7 +14,7 @@ classoption: "aspectratio=169"
 
 \centering\huge
 
-`03valid/make_valid.R`
+`03valid/check_validity.R`
 
 
 ## Data validation
@@ -106,13 +106,13 @@ More, see `?syntax` or `vignette("introduction", package="validate")`
 
 ## Challenges
 
-1. Express the following restrictions on `companies`. Then, `confront`, and `summarize`
+1. Express the following restrictions on `companies`. Then `confront` and `summary`
     - Profit does not exceed 60% of turnover
     - turnover less costs equals profit
     - Average profit is larger than zero
     - correlation (`corr`) between total cost and staff exceeds 0.5
     - zipcode is 4 numbers followed by two upper case letters (you need to know regex)
-2. Read the rules in `rules.R`. Then, `confront`, and `summarize`. 
+2. Read the rules in `rules.R`. Then, `confront`, and `summary`. 
 
 
 
