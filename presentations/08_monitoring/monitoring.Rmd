@@ -43,3 +43,12 @@ validate::cells(start=dataset1, step1=dataset2, step3=dataset3, ...)
 validate::compare(rules, start=dataset1, step1=dataset2, ...)
 ```
 
+
+## Assignment
+
+1. Read all the versions of datasets created today
+2. Create plots showing the progress in the cell counts and rule counts methods.
+
+
+
+

@@ -40,7 +40,7 @@ rules
 # Study the variables staff ... vat. Add at least three more rules, then:
 ## 1. Summarize and plot the results. Interpret the results.
 
-## 2. Use `as.data.frame` to turn read results into a data frame and
+## 2. Use `as.data.frame` to turn results into a data frame and
 ## View the results.
 
 

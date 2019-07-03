@@ -100,7 +100,7 @@ plot(Y ~ X, data=d2, col=cols,pch=".",cex=cex,las=1,main="Imputation with Y = a 
 ### Example
 
 ```{r, echo=FALSE, results='hide'}
-companies <- read.csv("../../02input/errors_located.csv"
+companies <- read.csv("../../03valid/errors_located.csv"
                       , stringsAsFactors=FALSE)
 ```
 

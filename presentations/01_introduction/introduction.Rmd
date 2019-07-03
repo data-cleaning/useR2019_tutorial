@@ -28,5 +28,17 @@ Or download:
 \end{center}
 
 
+## This tutorial
+
+
+### Topics
+
+First two steps of the the Value chain
+
+### Form
+
+1. You start with hands-on scripts
+2. Presentation: background
+3. Extra assignment (if there is time)
 
 

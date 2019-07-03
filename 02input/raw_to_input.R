@@ -3,44 +3,53 @@
 # useR!2019
 
 
-## Reading Dirty Data ----
-
-
-
 ## Approximate matching ----
 # Task: merge our 'companies' data with data from the backbone.
 
-# Assignment 1. (see slide)
+# Assignment 1: playing around with 'stringdist'.
+library(stringdist)
+
+# 1.a Try these commands and interpret their results. Can you guess
+# how the difference between strings is measured? Discuss with your neighbour.
+stringdist("hihi", "hihihi")
+stringdist("hihi", "haha")
+stringdist("hihi", "ihhi")
+stringdist("hello", "Hello")
 
 
+# 1.b compute the stringdistance between your name and your neighbours name.
 
-# Assignment 2. (see slide).
+# 1.c compute the stringdist between your own "firstname lastname" and
+#     "lastname, firstname".
+
+
+# Assignment 2. Matching data on exact keys, using 'match'
+# (this can be done easier with 'merge' but we need this method for the 
+# final assignment)
 
 # first read in the data
 # TODO this data should come from Edwin's part.
 companies <- read.csv("data/companies.csv",stringsAsFactors = FALSE) 
 backbone  <- read.csv("data/backbone.csv", stringsAsFactors = FALSE)
 
-# Merge backbone register information with dirty data (left join)
-test <- merge(backbone, companies, by.x = "company", by.y="name"
-              , all.y = TRUE)
-View(test)
-# Q: how many records (out of 60) could be matched?
 
-
-# The equivalent using base R's `match` function works as follows.
-# (advantages: now we keep both 'name' and 'company' columns, and we can 
-# extend to )
+# i: for each element of 'companies$name' give the index in backbone$company
+# with the same value.
 i <- match(companies$name, backbone$company)
 test <- cbind(backbone[i,,drop=FALSE], companies)
 View(test)
 
+# or, to view only the match quality:
+d <- data.frame(dirty = companies$name, matched = backbone$company[i])
+View(d)
 
-# Code from 2nd assignment here (see slide)
+
+## Assignment 3: SEE SLIDE
+
 
 
 # at the end write your result to '02input/input.csv'
-write.csv(input, "02input/input.csv", row.names=FALSE)
+write.csv(input, "02input/my_input.csv", row.names=FALSE)
 
 
 

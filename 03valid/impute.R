@@ -4,7 +4,7 @@
 # try the following code
 library(simputation)
 library(magrittr)
-companies <- read.csv("02input/errors_located.csv",stringsAsFactors = FALSE)
+companies <- read.csv("03valid/errors_located.csv",stringsAsFactors = FALSE)
 
 # for convenience, we take only the financial variables
 finvar <- companies[7:14]

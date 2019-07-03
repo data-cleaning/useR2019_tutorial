@@ -9,33 +9,22 @@ output:
 classoption: "aspectratio=169"
 ---
 
+## Try the code together with your neighbour
+
+\centering\huge
+`02input/raw_to_input.R`
+
+
 ## String distance
 
-### Measure how different two strings are
+### Default (Optimal String Alignment distance)
 
-- (Damerau-) Levenshtein, optimal string alignment: nr of typos
-- $q$-gram based (e.g. cosine distance): co-occurrence of character $q$-plets.
-- Jaro-Winkler typo's/heuristic
-- Soundex: do they sound the same when pronounced?
-
-### The stringdist package
-
+Count number of character deletions, insersions, substitutions and 
+transpositions (of adjacent characters)
 ```{r}
 library(stringdist)
-stringdist("mark", "edwin")
+stringdist("Ross Ihaka", "Robert Gentleman")
 ```
-
-## Mini-assignment
-
-Compute a few string distances between you and your neighbour.
-
-```{r,eval=FALSE}
-# for example
-stringdist("mark", "edwin", method="osa")
-```
-
-- Method is `"osa"`, `"dl"`, `"lv"`, `"qgram"`, `"jw"` 
-- See also `?stringdist` and ``?`stringdist-metrics` ``
 
 
 ## Exact Matching with `match`
@@ -55,6 +44,33 @@ j <- amatch(raw, lookup, maxDist=2)
 data.frame(raw=raw, matched=lookup[i], amatched=lookup[j])
 ```
 
+$\to$ Match with closest match, and distance $\leq 2$.
+
+## Optimal string alignment?
+
+```{r}
+stringdist("Robert Gentleman", "Gentleman, Robert")
+stringdist("Robert Gentleman", "Ross Ihaka")
+```
+
+$\to$ OSA wil give a false match (if we allow `maxDist` of 12)
+
+
+## Alternative: cosine distance 
+
+```{r}
+stringdist("Robert Gentleman","Gentleman, Robert"
+            , method="cosine", q=2)
+stringdist("Robert Gentleman","Ross Ihaka"
+            , method="cosine", q=2)
+```
+
+### Notes
+- Based on counting co-occurrence of character $q$-grams (here: pairs).
+- Always between 0 and 1
+
+
+
 ## More on `amatch`
 
 ```{r, eval=FALSE}
@@ -65,7 +81,7 @@ amatch(x, table, method, maxDist,...)
 \texttt{x}      & character data to be matched\\
 \texttt{table}  & the lookup table with clean values\\
 \texttt{method} & string distance type\\
-\texttt{maxDist}& Maximum distance allowed\\
+\texttt{maxDist}& Maximum distance allowed (depends on \texttt{"method"}!)\\
 \texttt{...}    & Extra options depending on \texttt{"method"}
 \end{tabular}
 
@@ -76,39 +92,16 @@ amatch(raw, lookup, method="cosine", maxDist=0.5, q=3)
 ```
 
 
-## Most important distance methods
-
-\begin{center}
-\begin{tabular}{lll}
-\textbf{Method}     & \textbf{Good for} &\texttt{maxDist}\\
-\hline
-\texttt{"osa"}      & Typing errors & nr of typing errors allowed\\
-\texttt{"cosine"}   & Inconsistent word order    & Between $0$ and $1$\\
-\texttt{"jw"}       & Name-address data with typing errors & Between $0$ and $1$\\
-\hline
-\end{tabular}
-\end{center}
-
-$$
-\;
-$$
-
-### Notes
-
-- Jaro-Winkler (\texttt{"jw"}) faster then Optimal String Alignment (\texttt{"osa"})
-- For cosine distance (\texttt{"cosine"}) also use `q=3`.
-- Cosine distance also suited for (very) long strings.
-
 
 ## Assignment
 
-Enrich data from the `companies` dataset with data from `backbone.csv`.
+Merge data from the `companies` dataset with data from `backbone.csv`.
 
 - Using approximate matching on the `"name"` and `"company"` column.
 - Think about and try different distance functions and `maxDist`
 - Keep your best solution
 - Remove rows that cannot be matched
-- Write to `02input/input.csv`
+- Write to `02input/myinput.csv`
 
 
 
