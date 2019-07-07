@@ -37,3 +37,4 @@ total.costs >= staff.costs
 
 profit == total.rev - total.costs
 
+grepl("^[1-9][0-9]{3}[A-Z]{2}$", zipcode)

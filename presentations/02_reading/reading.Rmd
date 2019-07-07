@@ -9,9 +9,85 @@ output:
 classoption: "aspectratio=169"
 ---
 
+## Try the code together with your neighbour
+
+\centering\huge
+`01raw/json_to_raw.R`
+
 ## Reading Dirty Data
 
+_Reading data into raw format is uniforming the technical
+layout of the data._
 
-haha
+We saw the following issues in the example:
+
+- Storage formats
+- Data types
+  - Locales...
+  - Unit suffixes.
+- Non-uniform formatting
+
+## Storage formats
+
+Your raw data is often stored in external formats:
+
+- A database (dump).
+- Scraped data in html format.
+- Data retrieved from a*n api (JSON/XML).
+- csv / txt/ spss / stata / sas / etc.
+
+### Action:
+
+> **Turn the data into a tabular format**
+
+## Data types
+
+Most important reading action is setting data types:
+
+- numeric columns often contain units ("42%", "42 $", "42 km", etc.)
+- numeric columns often contain locale dependent formatting: 
+  "4.2" vs "4,2" or "4.200,42" vs "4,200.42"
+- date columns (not in example):
+  "4/2/1942" vs "42/2/4" vs "1942-4-2" etc.
+- encoding of strings (for non english): "forty two" vs "twee**ë**nveertig"
+- footnotes/annotations[^42] in values may corrupt data type.
+
+[^42]: Footnotes can be essential to data interpretation, but desastrous for
+technical parsing.
+
+### Cleaning action
+
+> **Fix the columns: remove non-relevant info and set data type**
+
+## Uniforming values
+
+Some text variables are structured, but contain variations:
+
+- phone numbers: "+311234567890" vs "0031-12-34567890" vs "012-34567890"
+- soc. sec. numbers: "1234 5678" vs "123456789"
+- bank account numbers, etc.
+- zip codes: e.g Dutch zip codes: "1234AB" vs "1234 AB" vs "1234 ab".  
+
+### Cleaning action
+
+> **Reformat values into standard format**
+
+## Assigment
+
+Read in the "01raw/backbone.xml" file and **reformat the zip code** 
+into  4 digits, no space, two uppercase letters. "1234 ab" -> "1234AB"
+
+```{r, eval=FALSE}
+library(XML)
+backbone_xml <- XML::xmlParse("01raw/backbone.xml")
+backbone <- xmlToDataFrame(backbone_xml)
+
+# Fix zip code
+...
+
+# and save the result
+write.csv( backbone, "01raw/my_backbone.csv"
+         , row.names = FALSE, na="")
+```
 
 

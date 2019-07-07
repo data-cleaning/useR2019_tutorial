@@ -11,5 +11,11 @@ classoption: "aspectratio=169"
 
 ## Error localization
 
+## Try the code
 
+\centering\huge
+
+`03valid/check_validity.R`
+
+## Assignment
 
