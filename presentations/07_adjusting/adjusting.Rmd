@@ -9,7 +9,73 @@ output:
 classoption: "aspectratio=169"
 ---
 
+## Try the code
+
+\centering\huge
+
+`03valid/adjusting.R`
+
 ## Adjusting numerical values
 
+> Minimally adjust values so that they conform to rules after imputation.
+
+## Imputation
+
+- Almost all imputation methods, do not take the data restrictions/rules 
+into account. 
+- This means that valid data can be become invalid after missing values have
+been imputed.
+
+## Successive projection algorithm
+
+### Idea
+
+Alter (imputed) values in a record $\boldsymbol{x}$ _as little as possible_ to
+satisfy all restrictions.
+
+### As little as possible?
+
+The minimal Eucledian distance between the original $\boldsymbol{x}$ and the
+adjusted record $\boldsymbol{x}^*$.
+
+$$
+\boldsymbol{x}^*=\min_{\boldsymbol{x}}
+(\boldsymbol{x}^*-\boldsymbol{x})'(\boldsymbol{x}^*-\boldsymbol{x})
+$$
+
+### Successive Projection Algorithm (sketch)
+
+Project $\boldsymbol{x}$ on each (in)equality restriction sequentially
+and iteratively until convergence.
+
+\hfill{}\scriptsize{}Hildredth (1957) \emph{Naval Research Logistics} \textbf{4} 79--85\normalfont{}
+
+## Extension: weighted distance
+
+###
+
+$$
+\boldsymbol{x}^*=\min_{\boldsymbol{x}}
+(\boldsymbol{x}^*-\boldsymbol{x})'\boldsymbol{W}(\boldsymbol{x}^*-\boldsymbol{x})
+$$
+
+### Property
+If $W_{ij}=\delta_{ij}x_j^{-1}$, then the ratios between altered variables
+are preserved to $\mathcal{O}(1)$.
+\hfill{}\scriptsize{}Pannekoek \& Zhang (2015) \emph{Survey Methodology} \textbf{41} 127--144; SDCR \S10.11\normalfont{}
+
+## 
+
+\begin{picture}(0,0)
+\put(100,-30){\includegraphics[]{fig/rspa.pdf}}
+\end{picture}
 
 
+## Assignments
+
+- load "03valid/imputed.csv" into `imputed`
+- use `confront` to find out how many values are invalid and make a plot of the
+object
+- apply `rspa::match_restrictions` to the data
+- use `confront` to find out how many values are invalid and make a plot of 
+the object

@@ -1,3 +1,6 @@
+
+## error localization 
+
 library(errorlocate)
 
 # 1 Toy problem
