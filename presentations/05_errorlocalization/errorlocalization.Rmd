@@ -108,6 +108,21 @@ If the weights do not differ too much, no extra variables
 will be introduced on top of the variables in a feasible
 solution of of minimal size.
 
+## errorlocate
+
+`errorlocate` formulates a Mixed Integer Problem with:
+
+ - `validate` rules set $R$ as a hard constraints
+
+ - values of record $x_0$ are soft constraints $R_0$
+
+ - objective function: minimize 
+ $$
+ f(x_0, \delta) = \sum_{i} w_i \delta_i 
+ $$
+ with $\delta_i \in \{0,1\}$ and $\delta_i =  1$ 
+ if field $i$ is an invalid value.
+
 ## Assignment
 
 ```{r, eval=FALSE}
