@@ -74,15 +74,25 @@ Some text variables are structured, but contain variations:
 
 ## String manipulations
 
-Replace:
+### Replace text in columns
 
 ```{r, eval = FALSE}
-values <- c("3,4", "4,5")
-gsub(",", ".", values) # or use str_replace
+library(stringr)
+str_replace(c("3,4", "4,5"), ",", ".") # or use gsub
 ```
+
+### Change casing of characters
 ```{r, eval =FALSE}
-toupper("small")
+str_to_lower("HUGE")
 ```
+### Tip: use `readr::parse_*` functions
+
+```{r}
+library(readr)
+parse_number(c("3,4", "5,6"), locale = locale(decimal_mark = ","))
+parse_date(c("3-4-25", "1-12-78"), format = "%d-%m-%y")
+```
+
 
 ## Encoding
 
