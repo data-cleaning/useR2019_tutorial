@@ -27,7 +27,7 @@ result
 
 # Summarize the result and study the output
 summary(result)
-# Can you explain these results to yourself?
+# Discuss each column with your neighbour
 
 # plot the result
 plot(result)
