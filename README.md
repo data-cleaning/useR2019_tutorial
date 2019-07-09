@@ -2,7 +2,24 @@
 
 Tutorial for useR2019
 
-### Contents (preliminary)
+
+Packages to install:
+
+```r
+install.packages(c(
+      "stringdist"
+    , "jsonlite"
+    , "xml2"
+    , "validate"
+    , "errorlocate"
+    , "rspa"
+    , "simputation"
+    , "dafff")
+  , dependencies=TRUE)
+```
+
+
+### Contents 
 
 Slot 1 14:00-15:30
 
@@ -26,18 +43,6 @@ Slot 2 16:00-17:30
 | Wrap-up              | Mark & Edwin   | 5      |
 
 
-### Install the following packages
-
-```r
-install.packages(c(
-        "validate"
-      , "errorlocate"
-      , "simputation"
-      , "rspa"
-      , "daff"
-      , "lumberjack")
-  , dependencies=TRUE)
-```
 
 
 
