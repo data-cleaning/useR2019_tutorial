@@ -1,5 +1,7 @@
 ## Adjusting values under constraints
 library(rspa)
+library(validate)
+
 
 # 1 Toy data
 # Suppose we have the following problem: 
