@@ -9,7 +9,7 @@ Packages to install:
 install.packages(c(
       "stringdist"
     , "jsonlite"
-    , "xml2"
+    , "XML"
     , "validate"
     , "errorlocate"
     , "rspa"
