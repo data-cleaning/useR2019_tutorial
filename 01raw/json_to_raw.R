@@ -34,6 +34,7 @@ unique(companies_raw$staff[is.na(staff)])
 companies_raw$staff <- staff
 
 # 3 Turn profit into a numeric, by first removing its unit.
+# hint, try `str_` function from `stringr`
 
 # 4 Do this for all financial columns.
 
