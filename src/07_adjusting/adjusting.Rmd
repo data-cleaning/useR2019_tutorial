@@ -21,7 +21,7 @@ classoption: "aspectratio=169"
 
 ## Imputation
 
-- Almost all imputation methods, do not take the data restrictions/rules 
+- Most imputation methods do not take the data restrictions/rules 
 into account. 
 - This means that valid data can be become invalid after missing values have
 been imputed.
