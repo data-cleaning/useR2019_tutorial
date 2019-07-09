@@ -73,9 +73,12 @@ are preserved to $\mathcal{O}(1)$.
 
 ## Assignments
 
-- load "03valid/imputed.csv" into `imputed`
-- use `confront` to find out how many values are invalid and make a plot of the
-object
-- apply `rspa::match_restrictions` to the data
+- load "03valid/errors_located.csv" into `errors_located`
+- load "03valid/imputed.csv" into `imputed`.
+- use `confront` to find out how many values are invalid in `imputed` 
+and make a plot of the object
+- Use `is.na` to store all `NA` values of `errors_located` into `adjust`
+- apply `rspa::match_restrictions` to the data and use the `adjust` argument: we
+are restricting adjustments to the data that are imputed.
 - use `confront` to find out how many values are invalid and make a plot of 
 the object
