@@ -91,30 +91,11 @@ Heigher weight $\to$ variable is less likely chosen.
 - Can be made to depend on 'outlierness', or expert judgement.
 - Possible problem: minimal weights vs minimal nr of variables?
 
-
-## Choosing weights
-
-### Question
-
-Is it possible to choose a set of weights, such that
-
-a. The smallest number of variables is chosen
-b. The weights are minimized
-
-
-### Intuition
-
-If the weights do not differ too much, no extra variables
-will be introduced on top of the variables in a feasible
-solution of of minimal size.
-
 ## errorlocate
 
 `errorlocate` formulates a Mixed Integer Problem with:
 
  - `validate` rules set $R$ as a hard constraints
-
- - values of record $x_0$ are soft constraints $R_0$
 
  - objective function: minimize 
  $$
@@ -122,18 +103,19 @@ solution of of minimal size.
  $$
  with $\delta_i \in \{0,1\}$ and $\delta_i =  1$ 
  if field $i$ is an invalid value.
+ 
+ - Penalize 
 
 ## Assignment
 
 ```{r, eval=FALSE}
-# we have much confidence in turnover, since these are
-# also collected via the tax register
-weight <- sapply(data_with_errors, function(x) 1)
-# Set the weight of turnover to 10 and supply the weight to 
-# locate_errors
+# we first create a named weight vector with weight 1
+weight <- rep(1, ncol(data_with_errors))
+names(weight) <- names(data_with_errors)
 ```
 
-- Are less errors found in `turnover`?
+- Set the weight of turnover to 10 and supply the weight to locate_errors
+- Discuss the effect of setting te weight on turnover with your neighbor.
 - Replace errors with `NA` using the `replace_errors` with the weights used above
 - Store the results in "my_errors_located.csv".
 

@@ -39,3 +39,5 @@ companies_raw$staff <- staff
 
 # 5 save the resulting data.frame:
 write.csv(companies_raw, "01raw/my_companies.csv", row.names = FALSE, na ="")
+
+# Assignment 6 SEE SLIDE
