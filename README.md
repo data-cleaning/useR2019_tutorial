@@ -14,7 +14,7 @@ install.packages(c(
     , "errorlocate"
     , "rspa"
     , "simputation"
-    , "dafff")
+    , "daff")
   , dependencies=TRUE)
 ```
 
