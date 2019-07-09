@@ -29,6 +29,13 @@ ferry <- data.frame(weight_car = 1400, weight_driver = 120)
 # 1d) What about?
 ferry <- data.frame(weight_car = 1600, weight_driver = 80)
 
+# 1e) Also try
+weight <- c(1/ferry$weight_car, 1/ferry$weight_driver)
+match_restrictions(ferry, ferry_rules, weight = weight)
+
+# 1f) And also
+match_restrictions(ferry, ferry_rules, adjust=matrix(c(TRUE,FALSE), nrow=1))
+
 
 
 
