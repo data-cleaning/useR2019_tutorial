@@ -16,7 +16,7 @@ classoption: "aspectratio=169"
 
 ## Reading Dirty Data
 
-_Reading data into raw format is uniforming the technical
+_Reading raw data is about uniforming the technical
 layout of the data._
 
 We saw the following issues in the example:
@@ -33,7 +33,7 @@ Your raw data is often stored in external formats:
 
 - A database (dump).
 - Scraped data in html format.
-- Data retrieved from a*n api (JSON/XML).
+- Data retrieved from an api (JSON/XML).
 - csv / txt/ spss / stata / sas / etc.
 
 ### Action:
@@ -50,7 +50,7 @@ Most important reading action is setting data types:
 - date columns (not in example):
   "4/2/1942" vs "42/2/4" vs "1942-4-2" etc.
 - encoding of strings (for non english): "forty two" vs "twee**ë**nveertig"
-- footnotes/annotations[^42] in values may corrupt data type.
+- footnotes/annotations[^42] in values may corrupt data type: 42^
 
 [^42]: Footnotes can be essential to data interpretation, but desastrous for
 technical parsing.
@@ -72,10 +72,38 @@ Some text variables are structured, but contain variations:
 
 > **Reformat values into standard format**
 
+## String manipulations
+
+Replace:
+
+```{r, eval = FALSE}
+values <- c("3,4", "4,5")
+gsub(",", ".", values) # or use str_replace
+```
+```{r, eval =FALSE}
+toupper("small")
+```
+
+## Encoding
+
+```{r}
+bands <- c("Motörhead", "Iron Maiden")
+Encoding(bands)
+Encoding(bands) <- "latin1"
+print(bands)
+Encoding(bands) <- "UTF-8"
+print(bands)
+```
+
+## 
+
+![](./fig/Encoding2.pdf)
+
 ## Assigment
 
 Read in the "01raw/backbone.xml" file and **reformat the zip code** 
 into  4 digits, no space, two uppercase letters. "1234 ab" -> "1234AB"
+
 
 ```{r, eval=FALSE}
 library(XML)
