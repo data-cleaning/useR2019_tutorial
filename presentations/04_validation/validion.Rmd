@@ -9,6 +9,11 @@ output:
 classoption: "aspectratio=169"
 ---
 
+```{r, echo=FALSE}
+library(validate)
+companies <- read.csv("../../02input/input.csv")
+```
+
 
 ## Try the code
 
@@ -65,11 +70,14 @@ result    <- confront(companies, rules)
 \includegraphics[height=90mm]{fig/diagram.png}
 \end{center}
 
-## Overview of the work flow
+## Comparing numbers
 
-\begin{center}
-\includegraphics[height=50mm]{fig/overview.pdf}
-\end{center}
+
+```{r}
+rules <- validator(turnover + costs == profit)
+summary( confront(companies, rules) )
+```
+
 
 
 ## Data validation: informal definitions
