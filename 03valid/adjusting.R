@@ -1,7 +1,7 @@
 ## Adjusting values under constraints
+
 library(rspa)
 library(validate)
-
 
 # 1 Toy data
 # Suppose we have the following problem: 
@@ -22,12 +22,15 @@ match_restrictions(ferry, ferry_rules)
 
 # 1b) What about?
 ferry <- data.frame(weight_car = 500, weight_driver = 40)
+match_restrictions(ferry, ferry_rules)
 
 # 1c) What about?
 ferry <- data.frame(weight_car = 1400, weight_driver = 120)
+match_restrictions(ferry, ferry_rules)
 
 # 1d) What about?
 ferry <- data.frame(weight_car = 1600, weight_driver = 80)
+match_restrictions(ferry, ferry_rules)
 
 # 1e) Also try
 weight <- c(1/ferry$weight_car, 1/ferry$weight_driver)

@@ -104,7 +104,23 @@ Heigher weight $\to$ variable is less likely chosen.
  with $\delta_i \in \{0,1\}$ and $\delta_i =  1$ 
  if field $i$ is an invalid value.
  
- - Penalize 
+ - Penalize the number of fields 
+ 
+## `locate_errors` and `replace_errors`
+
+Find the errors:
+
+```{r, eval = FALSE}
+library(errorlocate)
+errors <- locate_errors(data, rules)
+```
+
+Set the fields to `NA`:
+
+```{r, eval = FALSE}
+data_errors_to_na <- replace_errors(data, rules)
+```
+
 
 ## Assignment
 

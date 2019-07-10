@@ -34,11 +34,26 @@ unique(companies_raw$staff[is.na(staff)])
 companies_raw$staff <- staff
 
 # 3 Turn profit into a numeric, by first removing its unit.
-# hint, try `str_` function from `stringr`
+# hint, try `str_*` functions from `stringr` or `parse_*`  from `readr`
+profit <- readr::parse_number(companies_raw$profit)
 
 # 4 Do this for all financial columns.
+companies_raw[-c(1,2)] <- lapply(companies_raw[-c(1,2)], readr::parse_number)
 
 # 5 save the resulting data.frame:
 write.csv(companies_raw, "01raw/my_companies.csv", row.names = FALSE, na ="")
 
 # Assignment 6 SEE SLIDE
+
+library(XML)
+backbone_xml <- XML::xmlParse("01raw/backbone.xml")
+backbone <- XML::xmlToDataFrame(backbone_xml)
+
+# remove spaces
+backbone$zipcode <- str_remove_all(backbone$zipcode, " ")
+# to uppercase
+backbone$zipcode <- str_to_upper(backbone$zipcode)
+
+# and save the result
+write.csv( backbone, "01raw/my_backbone.csv"
+           , row.names = FALSE, na="")
