@@ -1,0 +1,139 @@
+---
+title: "Error Localization"
+author: "Mark van der Loo and Edwin de Jonge"
+date: "useR!2019"
+output: 
+  beamer_presentation:
+    include:
+      in_header: ../00tex/presheader.tex
+classoption: "aspectratio=169"
+---
+
+## Try the code
+
+\centering\huge
+
+`03valid/errorlocalization.R`
+
+## Error localization
+
+
+> Error localization is a procedure that points out fields in a
+data set that can be altered or imputed in such a way that
+all validation rules can be satisfied.
+
+
+## Example
+
+### Ruleset
+
+```{r, eval=FALSE}
+if (married == TRUE ) age >= 16
+if (attends == "kindergarten") age <= 6
+```
+
+### Data
+
+```{r, echo=FALSE}
+knitr::kable(data.frame(age=3, married=TRUE, attends="kindergarten"))
+```
+
+
+### Question
+
+Which field or fields would you change?
+
+## Principle of Fellegi and Holt
+
+###
+
+Find the minimal (weighted) number of fields to adjust such that
+all rules, including implied rules, can be satisfied.
+
+\hfill{}\scriptsize{IP Fellegi and D Holt, JASA \textbf{71} 353  17--35 (1976).}
+
+### Note
+
+This should be used as a last resort, when no further information on 
+the location of errors is available.
+
+
+## Implied rules?
+
+### 
+
+```{r, eval=FALSE}
+turnover - total.cost == profit
+               profit <= 0.6 * turnover
+```
+
+This implies (substituting profit):
+
+```{r, eval=FALSE}
+           total.cost >= 0.4 * turnover
+```
+
+We need to take into account such _essentially new_ rules: a rule set forms
+a system of rules and its implied rules. `errorlocate` takes this into account
+
+
+## Choosing weights
+
+### All weights equal (usually to one)
+
+Least nr of variables adapted. In case of multiple solutions: choose randomly
+(e.g. by adding a small random perturbation to the weights).
+
+### Weights represent reliability
+
+Heigher weight $\to$ variable is less likely chosen.
+
+- Can be made to depend on 'outlierness', or expert judgement.
+- Possible problem: minimal weights vs minimal nr of variables?
+
+## errorlocate
+
+`errorlocate` formulates a Mixed Integer Problem with:
+
+ - `validate` rules set $R$ as a hard constraints
+
+ - objective function: minimize 
+ $$
+ f(x_0, \delta) = \sum_{i} w_i \delta_i 
+ $$
+ with $\delta_i \in \{0,1\}$ and $\delta_i =  1$ 
+ if field $i$ is an invalid value.
+ 
+ - Penalize the number of fields 
+ 
+## `locate_errors` and `replace_errors`
+
+Find the errors:
+
+```{r, eval = FALSE}
+library(errorlocate)
+errors <- locate_errors(data, rules)
+```
+
+Set the fields to `NA`:
+
+```{r, eval = FALSE}
+data_errors_to_na <- replace_errors(data, rules)
+```
+
+
+## Assignment
+
+```{r, eval=FALSE}
+# we first create a named weight vector with weight 1
+weight <- rep(1, ncol(data_with_errors))
+names(weight) <- names(data_with_errors)
+```
+
+- Set the weight of turnover to 10 and supply the weight to locate_errors
+- Discuss the effect of setting te weight on turnover with your neighbor.
+- Replace errors with `NA` using the `replace_errors` with the weights used above
+- Store the results in "my_errors_located.csv".
+
+
+

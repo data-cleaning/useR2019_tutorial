@@ -6,7 +6,7 @@ imputed <- read.csv("03valid/imputed.csv",stringsAsFactors=FALSE)
 ## Monitoring changes in data using 'daff'
 library(daff)
 # 1. Try the following code
-data_diff(companies, errors_located)
+diff_data(companies, errors_located)
 # Interpret the result
 
 # 2. compare 'errors_located' and 'imputed' to 'companies' by counting cells.
@@ -21,7 +21,7 @@ counts
 
 # 4. Try the following
 plot(counts)
-bartplot(counts)
+barplot(counts)
 
 
 # 5. Try the following
