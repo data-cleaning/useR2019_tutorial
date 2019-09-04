@@ -2,7 +2,7 @@
 
 Tutorial for useR2019
 
-### Contents (preliminary)
+### Contents 
 
 Slot 1 14:00-15:30
 
